@@ -15,7 +15,7 @@ const app = express();
   } catch (error) {
     throw new Error("Error connecting to DB");
   }
-  try {
+ 
     app
       .use(cors("*"))
       .use(morgan("dev"))
@@ -25,7 +25,5 @@ const app = express();
       .listen(process.env.SERVER_PORT, () => {
         console.log(`Connected to port ${process.env.SERVER_PORT} `);
       });
-  } catch (error) {
-    throw new Error("Error launching server");
-  }
+ 
 })();
