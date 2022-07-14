@@ -54,7 +54,7 @@ async function deleteEmployee(req, res) {
     try {
         const employee = await EmployeeModel.findByIdAndDelete(req.params.id)
         res.json(deleteEmployee)
-        
+
     } catch (error) {
         console.log(error)
         
@@ -71,11 +71,21 @@ async function updateEmployee(req, res) {
     }
 }
 
+async function showProfile(req, res) {
+    try {
+        const employeePerfil = await EmployeeModel.findOne()
+        res.json(employeePerfil)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports = {
     createEmployee,
     employeeLogin,
     showEmployees,
+    showProfile,
     deleteEmployee,
     updateEmployee
 }

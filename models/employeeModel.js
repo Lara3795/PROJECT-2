@@ -18,9 +18,6 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    // schedule: {
-        //     type: mongoose.Schema.Types.ObjectId
-        // },
         rol: {
         type: String,
         enum: ["admin", "employee"],
