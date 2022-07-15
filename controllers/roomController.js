@@ -8,7 +8,7 @@ async function createRoom(req, res) {
     console.log(error);
   }
 }
-async function findRoom(req, res) {
+async function findRoomList(req, res) {
   try {
     const room = await RoomModel.find(req.body);
     res.json(room);
@@ -17,7 +17,17 @@ async function findRoom(req, res) {
   }
 }
 
+async function findRoomNumber(req, res) {
+  try {
+    const room = await RoomModel.findById(req.params.id).populate("room");
+    res.json(room);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   createRoom,
-  findRoom,
+  findRoomList,
+  findRoomNumber,
 };

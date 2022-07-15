@@ -1,8 +1,13 @@
 const router = require("express").Router();
 
-const { createRoom, findRoom } = require("../controllers/roomController");
+const {
+  createRoom,
+  findRoomList,
+  findRoomNumber,
+} = require("../controllers/roomController");
 
 router.post("/", createRoom);
-router.get("/", findRoom);
+router.get("/", findRoomList);
+router.get("/:id", findRoomNumber);
 
 module.exports = router;
