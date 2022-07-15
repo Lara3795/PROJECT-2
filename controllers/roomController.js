@@ -8,7 +8,16 @@ async function createRoom(req, res) {
     console.log(error);
   }
 }
+async function findRoom(req, res) {
+  try {
+    const room = await RoomModel.find(req.body);
+    res.json(room);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 module.exports = {
   createRoom,
+  findRoom,
 };
