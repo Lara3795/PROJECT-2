@@ -37,9 +37,18 @@ async function findRoomAndUpdate(req, res) {
   }
 }
 
+async function findByIdAndDelete(req, res) {
+  try {
+    const room = await RoomModel.findByIdAndDelete(req.params.id);
+    res.json(room);
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
   createRoom,
   findRoomList,
   findRoomNumber,
   findRoomAndUpdate,
+  findByIdAndDelete,
 };
