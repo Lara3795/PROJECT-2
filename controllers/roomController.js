@@ -26,8 +26,20 @@ async function findRoomNumber(req, res) {
   }
 }
 
+async function findRoomAndUpdate(req, res) {
+  try {
+    const room = await RoomModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(room);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   createRoom,
   findRoomList,
   findRoomNumber,
+  findRoomAndUpdate,
 };
