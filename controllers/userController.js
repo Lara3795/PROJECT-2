@@ -39,7 +39,18 @@ async function userLogin(req, res){
     console.log(`Error login user ${error}`)
   }
 }
+
+async function showUsers(req, res) {
+  try {
+    const users = await UserModel.find()
+    res.json(users)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   createUser,
-  userLogin
+  userLogin,
+  showUsers
 };

@@ -18,14 +18,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  peliculasVistas: {
-    type: String,
-    //??
-  },
-  peliculasCompradas: {
-    type: String,
-    //??
-  },
+  pastMovies: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'movies'
+  }],
+  screenings: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'screening'
+  }],
+  purchases: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'purchases'
+  }]
 });
 
 const UserModel = mongoose.model("user", userSchema);
