@@ -28,11 +28,21 @@ async function findMovie(req, res) {
     }
   }
 
+  async function modifyMovie(req, res) {
+    try {
+      const movie = await MovieModel.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      res.json(movie)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
 module.exports = {
   createMovie,
   findMovie,
-  findMovieId
+  findMovieId,
+  modifyMovie
 };
 
 
