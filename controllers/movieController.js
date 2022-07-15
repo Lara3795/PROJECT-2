@@ -37,12 +37,21 @@ async function findMovie(req, res) {
     }
   }
 
+  async function deleteMovie(req, res) {
+    try {
+      const movie = await MovieModel.findByIdAndDelete(req.params.id)
+      res.json(movie)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 module.exports = {
   createMovie,
   findMovie,
   findMovieId,
-  modifyMovie
+  modifyMovie,
+  deleteMovie
 };
 
 
