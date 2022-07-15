@@ -26,6 +26,6 @@ const app = express();
         console.log(`Connected to port ${process.env.SERVER_PORT} `);
       });
   } catch (error) {
-    throw new Error("Error launching server");
+    console.error(error.stack);
   }
 })();
