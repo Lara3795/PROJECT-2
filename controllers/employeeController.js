@@ -73,10 +73,21 @@ async function updateEmployee(req, res) {
 
 async function showProfile(req, res) {
     try {
-        const employeePerfil = await EmployeeModel.findOne()
+        const employeePerfil = await EmployeeModel.findById(res.locals.user.id, {password: 0, __v: 0})
         res.json(employeePerfil)
+
     } catch (error) {
         console.log(error)
+    }
+}
+async function updateProfile(req, res) {
+    try {
+        const updatProfile = await EmployeeModel.findByIdAndUpdate(res.locals.user.id, req.body, {new: true})
+        res.json(updatProfile)
+
+
+    } catch (error) {
+        
     }
 }
 
@@ -84,6 +95,7 @@ async function showProfile(req, res) {
 module.exports = {
     createEmployee,
     employeeLogin,
+    updateProfile,
     showEmployees,
     showProfile,
     deleteEmployee,

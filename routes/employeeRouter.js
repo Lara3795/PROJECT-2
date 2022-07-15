@@ -7,6 +7,7 @@ const { checkAuth,
 const {
     createEmployee,
     employeeLogin,
+    updateProfile,
     showEmployees,
     showProfile,
     deleteEmployee,
@@ -17,8 +18,9 @@ router
 
     .post('/', createEmployee)
     .post('/login', employeeLogin)
+    .post('/profile', checkAuth, updateProfile)
     .get('/', showEmployees)
-    .get('/profile', checkAuth, checkRole, showProfile)
+    .get('/profile', checkAuth, showProfile)
     .delete('/:id', deleteEmployee)
     .put('/:id', updateEmployee)
 
