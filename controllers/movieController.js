@@ -10,7 +10,29 @@ async function createMovie(req, res) {
   }
 }
 
+async function findMovie(req, res) {
+    try {
+      const movie = await MovieModel.find(req.body)
+      res.json(movie)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function findMovieId(req, res) {
+    try {
+      const movie = await MovieModel.findById(req.params.id)
+      res.json(movie)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
 module.exports = {
-  createMovie
+  createMovie,
+  findMovie,
+  findMovieId
 };
+
+

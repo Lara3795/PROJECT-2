@@ -1,10 +1,15 @@
 const router = require("express").Router();
 
-const { 
-    createMovie 
-} = require("../controllers/movieController");
+const {
+    createMovie,
+    findMovie,
+    findMovieId
+} = require("../controllers/movieController")
 
 router
-.post("/", createMovie)
+    .post("/", createMovie)
+    .get("/", findMovie)
+    .get("/:id", findMovieId)
+
 
 module.exports = router;
