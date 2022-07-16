@@ -1,7 +1,7 @@
 const UserModel = require("../models/userModel")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { json } = require("express")
+
 
 
 async function createUser(req, res) {
