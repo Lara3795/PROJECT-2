@@ -25,7 +25,5 @@ const app = express();
       .listen(process.env.SERVER_PORT, () => {
         console.log(`Connected to port ${process.env.SERVER_PORT} `);
       });
-  } catch (error) {
-    console.error(error.stack);
-  }
+ 
 })();
