@@ -15,7 +15,7 @@ const app = express();
   } catch (error) {
     throw new Error("Error connecting to DB");
   }
-  try {
+
     app
       .use(cors("*"))
       .use(morgan("dev"))
