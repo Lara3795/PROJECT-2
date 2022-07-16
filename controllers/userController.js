@@ -1,7 +1,7 @@
 const UserModel = require("../models/userModel")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { json } = require("express")
+
 
 
 async function createUser(req, res) {
@@ -48,7 +48,15 @@ async function showUsers(req, res) {
     console.log(error)
   }
 }
+async function pastMovies(req, res) {
+  try {
+      const pastMovies = await UserModel.findById(res.locals.user.id, {password: 0, __v: 0, name: 0, age: 0, email: 0, screenings: 0, purchases: 0})
+      res.json(pastMovies)
 
+  } catch (error) {
+      console.log(error)
+  }
+}
 module.exports = {
   createUser,
   userLogin,
