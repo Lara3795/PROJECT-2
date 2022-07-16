@@ -39,7 +39,26 @@ async function userLogin(req, res){
     console.log(`Error login user ${error}`)
   }
 }
+
+async function showUsers(req, res) {
+  try {
+    const users = await UserModel.find()
+    res.json(users)
+  } catch (error) {
+    console.log(error)
+  }
+}
+async function pastMovies(req, res) {
+  try {
+      const pastMovies = await UserModel.findById(res.locals.user.id, {password: 0, __v: 0, name: 0, age: 0, email: 0, screenings: 0, purchases: 0})
+      res.json(pastMovies)
+
+  } catch (error) {
+      console.log(error)
+  }
+}
 module.exports = {
   createUser,
-  userLogin
+  userLogin,
+  showUsers
 };
