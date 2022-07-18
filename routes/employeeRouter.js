@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const { checkAuth, 
+    checkAuthEmployee,
     checkRole 
 } = require('../utils')
 
@@ -18,9 +19,9 @@ router
 
     .post('/', createEmployee)
     .post('/login', employeeLogin)
-    .post('/profile', checkAuth, updateProfile)
+    .post('/profile', checkAuthEmployee, updateProfile)
     .get('/', showEmployees)
-    .get('/profile', checkAuth, showProfile)
+    .get('/profile', checkAuthEmployee, showProfile)
     .delete('/:id', deleteEmployee)
     .put('/:id', updateEmployee)
 

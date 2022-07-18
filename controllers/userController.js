@@ -1,4 +1,5 @@
 const UserModel = require("../models/userModel")
+const ScreeningModel = require("../models/screeningModel")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -15,7 +16,7 @@ async function createUser(req, res) {
     const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '1h'})
 
     res.status(200).json({email: user.email, token: token})
-    
+
   } catch (error) {
     console.log(error);
   }
@@ -48,17 +49,86 @@ async function showUsers(req, res) {
     console.log(error)
   }
 }
-async function pastMovies(req, res) {
+
+async function showProfile(req, res) {
   try {
-      const pastMovies = await UserModel.findById(res.locals.user.id, {password: 0, __v: 0, name: 0, age: 0, email: 0, screenings: 0, purchases: 0})
-      res.json(pastMovies)
+      const userPerfil = await UserModel.findById(res.locals.user.id, {password: 0, __v: 0})
+      res.json(userPerfil)
 
   } catch (error) {
       console.log(error)
   }
 }
+async function pastMovies(req, res) {
+  try {
+      const user = await UserModel.findById(res.locals.user.id)
+      res.json(user.pastMovies)
+
+  } catch (error) {
+      console.log(error)
+  }
+}
+async function purchaseMovies(req, res) {
+  try {
+      const purchaseMovies = await UserModel.find(res.body, {password: 0, __v: 0, name: 0, age: 0, email: 0, screenings: 0, pastMovies: 0})
+      res.json(purchaseMovies)
+
+  } catch (error) {
+      console.log(error)
+  }
+}
+async function updateUser(req, res) {
+  try {
+      const updateUser = await UserModel.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      res.json(updateUser)
+
+  } catch (error) {
+     console.log(error)
+  }
+}
+async function buyScreening(req, res) {
+  try {
+  const screening = await ScreeningModel.findById(req.params.screeningId)
+  if(!screening) return res.send("Screening not found")
+  const user = await UserModel.findById(res.locals.user.id)  
+  user.screenings.push(screening.id)
+  screening.ocupation.push(user.id)
+  await user.save()
+  await screening.save()
+  res.json({screening: screening, message: "Screening purchased"})
+}catch (error){
+console.log(error)
+}
+}
+async function updateProfile(req, res) {
+  try {
+      const updatProfile = await UserModel.findByIdAndUpdate(res.locals.user.id, req.body, {new: true})
+      res.json(updatProfile)
+
+
+  } catch (error) {
+      
+  }
+}
+async function deleteUser(req, res) {
+  try {
+      const user = await UserModel.findByIdAndDelete(req.params.id)
+      res.json(user)
+
+  } catch (error) {
+      console.log(error)
+
+  }
+}
 module.exports = {
   createUser,
   userLogin,
-  showUsers
+  showUsers,
+  showProfile,
+  deleteUser,
+  pastMovies,
+  purchaseMovies,
+  updateUser,
+  buyScreening,
+  updateProfile
 };
