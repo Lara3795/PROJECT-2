@@ -10,7 +10,7 @@ async function createRoom(req, res) {
 }
 async function findRoomList(req, res) {
   try {
-    const room = await RoomModel.find(req.body);
+    const room = await RoomModel.find();
     res.json(room);
   } catch (error) {
     console.log(error);
@@ -19,7 +19,7 @@ async function findRoomList(req, res) {
 
 async function findRoomNumber(req, res) {
   try {
-    const room = await RoomModel.findById(req.params.id).populate("room");
+    const room = await RoomModel.findById(req.params.id);
     res.json(room);
   } catch (error) {
     console.log(error);

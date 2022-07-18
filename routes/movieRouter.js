@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const { checkRol, checkAuth } = require('../utils')
+
 const {
     createMovie,
     findMovie,
@@ -9,11 +11,11 @@ const {
 } = require("../controllers/movieController")
 
 router
-    .post("/", createMovie)
+    .post("/", checkRol, createMovie)
     .get("/", findMovie)
     .get("/:id", findMovieId)
-    .put("/:id", modifyMovie)
-    .delete("/:id", deleteMovie)
+    .put("/:id", checkRol, modifyMovie)
+    .delete("/:id", checkRol, deleteMovie)
 
 
 module.exports = router;
