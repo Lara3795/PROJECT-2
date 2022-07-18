@@ -17,15 +17,15 @@ function checkAuth (req, res, next) {
     }
 }
 
-function checkRole (req, res, next) {
-if (res.locals.user.role !== 'admin') {
+function checkRol (req, res, next) {
+if (res.locals.user.rol !== 'admin') {
     return res.send('user not autorized')
 }
-return next()
+next()
 }
 
 
 module.exports = {
     checkAuth,
-    checkRole
+    checkRol
 }

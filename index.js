@@ -16,14 +16,13 @@ const app = express();
     throw new Error("Error connecting to DB");
   }
 
-    app
-      .use(cors("*"))
-      .use(morgan("dev"))
-      .use(express.json())
-      .use("/api", require("./routes"))
+  app
+    .use(cors("*"))
+    .use(morgan("dev"))
+    .use(express.json())
+    .use("/api", require("./routes"))
 
-      .listen(process.env.SERVER_PORT, () => {
-        console.log(`Connected to port ${process.env.SERVER_PORT} `);
-      });
- 
+    .listen(process.env.SERVER_PORT, () => {
+      console.log(`Connected to port ${process.env.SERVER_PORT} `);
+    });
 })();
