@@ -25,7 +25,6 @@ GET    | /users                          | YES   | ADMIN | Get all users        
 GET    | /users/profile                  | YES   |  ALL  | Get user profile         |                                                 | name, email, age
 GET    | /users/pastMovies               | YES   |  ALL  | Get movie history        |                                                 | watched movies
 GET    | /users/purchasedMovies          | YES   |  ALL  | Get purchase             |                                                 | watched movies
-GET    | /users/allMovie???              | YES   |  ALL  |     ???????              |                                                 | watched movies
 GET    | /users/:userId                  | YES   | ADMIN | Get one users            | query: search string                            | name, email, age
 PUT    | /users/screening/:screeningId   | YES   |  ALL  | Buy screening            |                                                 | Buy screening
 PUT    | /users/profile                  | YES   |  ALL  | Modify profile           |                                                 | Modify profile
