@@ -34,7 +34,7 @@ try {
         })
 
 } catch (error) {
-    
+    console.log(error)
 }
 
 }
@@ -82,9 +82,9 @@ async function showProfile(req, res) {
 }
 async function updateProfile(req, res) {
     try {
+        req.body.rol = "employee"
         const updatProfile = await EmployeeModel.findByIdAndUpdate(res.locals.user.id, req.body, {new: true})
         res.json(updatProfile)
-
 
     } catch (error) {
         

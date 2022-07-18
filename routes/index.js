@@ -1,17 +1,17 @@
 const router = require("express").Router();
 
+const { checkAuth } = require('../utils')
+
 const userRouter = require("./userRouter");
 const roomRouter = require("./roomRouter");
+const employeeRouter = require("./employeeRouter");
+const movieRouter = require("./movieRouter");
+const screeningRouter = require("./screeningRouter");
 
 router.use("/user", userRouter);
 router.use("/room", roomRouter);
-const movieRouter = require("./movieRouter");
-
-router.use("/user", userRouter);
 router.use("/movie", movieRouter);
-const employeeRouter = require("./employeeRouter");
-
-router.use("/user", userRouter);
-router.use("/employee", employeeRouter);
+router.use("/employee", checkAuth, employeeRouter);
+router.use("/screening", screeningRouter);
 
 module.exports = router;
