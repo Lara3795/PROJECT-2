@@ -12,7 +12,7 @@ async function createMovie(req, res) {
 
 async function findMovie(req, res) {
     try {
-      const movie = await MovieModel.find(req.body)
+      const movie = await MovieModel.find()
       res.json(movie)
     } catch (error) {
       console.log(error);
