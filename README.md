@@ -32,37 +32,14 @@ PUT    | /users/:userId                  | YES   | ADMIN | Modify profile       
 POST   | /users                          | YES   | ADMIN | Add profile              |      ?????                                      | Add new profile
 DELETE | /users/purchasedMovies/:movieId | YES   |  ALL  | Delete movies purchase   |                                                 | Delete	purchase
 DELETE | /users/:userId                  | YES   | ADMIN | Delete one user          |                                                 | Delete	purchase
- 
-
-### Rooms Endints (rol admin or employee)
-
-METHOD | ENDPOINT         | TOKEN |  ROL  | DESCRIPTION              | PARAMS                                          | RETURNS
--------|------------------|-------|-------|--------------------------|-------------------------------------------------|--------------------
-GET    | /rooms           | YES   | A, E  | Get a list of rooms      | query: search string                            | List of rooms
-GET    | /rooms/:roomId   | YES   | A, E  | Get room number          |                                                 | room number, movie, schedule
-POST   | /rooms           | YES   | ADMIN | Add new room             | room number, movie, capacity, time              | New room
-PUT    | /rooms/:roomId   | YES   | A, E  | Modify room              | data                                            | New room
-DELETE | /rooms/:roomId   | YES   | ADMIN | Delete room              |                                                 | Delete room
-
-
-### Movies Endpoints 
-
-METHOD | ENDPOINT            | TOKEN | ROL  | DESCRIPTION              | PARAMS                                          | RETURNS
--------|---------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
-GET    | /movies             | YES   |  ALL | Get a list of movies     | query: search string                            | List of movies
-GET    | /movies/:movieId    | YES   |  ALL | Get movie                |                                                 | room number, movie
-POST   | /movies             | YES   | A, E | Add new movie            | name, time, synopsis, year, genre               | New movie
-PUT    | /movies/:movieId    | YES   | A, E | Modify a movie           | data                                            | Modified movie
-DELETE | /movies/:movieId    | YES   | A, E | Delete a movie           |                                                 | Delete movie
 
 
 ### Employee Endpoints
 
 METHOD | ENDPOINT              | TOKEN |  ROL  | DESCRIPTION              | PARAMS                                          | RETURNS
 -------|-----------------------|-------|-------|--------------------------|-------------------------------------------------|--------------------
-GET    | /employees            | YES   | ADMIN | Get all employees	  | query: search string                            | name, age, email, schedule
+GET    | /employees            | YES   | ADMIN | Get all employees	       | query: search string                            | name, age, email, schedule
 GET    | /employees/profile  ? | YES   | EMPL  | Get a employee profile   |                                                 | name, age, email, schedule
-GET    | /employee/:employeeId | YES   | ADMIN | Get one employee         |                                                 | name, age, email, schedule
 POST   | /employees            | YES   | ADMIN | Add new employee         | name, age, email, schedule, admin               | New employee
 PUT    | /employees/profile    | YES   | EMPL  | Modify profile employee  |                                                 | Modify employee
 PUT    | /employees/:userId    | YES   | ADMIN | Modify employee          |                                                 | Modify profile
@@ -85,7 +62,7 @@ DELETE |  /purch/:parched | YES   | ADMIN | Delete purchase          |          
 METHOD | ENDPOINT           | TOKEN |   ROL | DESCRIPTION              | PARAMS                                          | RETURNS
 -------|--------------------|-------|-------|--------------------------|-------------------------------------------------|--------------------
 GET    |  /screen           | YES   |  USER | Get a list of screening  | query: search string                            | List of screening
-GET    |  /screen/:screenId | YES   |  USER | Get one screening        |                                                 | Time, movie, capacity, room number
+GET    |  /screen/:screenId | YES   |  USER | Get one screening        |                                                 | Time, movie, capacity, room
 POST   |  /screen           | YES   | ADMIN | Add screening            |                                                 | New screening	
 PUT    |  /screen/:screenId | YES   | ADMIN | Modify screening         |                                                 | Modify screening
 DELETE |  /screen/:screenId | YES   | ADMIN | Delete screening         |                                                 | Delete screening
