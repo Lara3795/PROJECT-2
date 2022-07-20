@@ -8,6 +8,14 @@ async function createPurchase(req, res) {
     console.log(error);
   }
 }
+async function employeePurchase(req, res){
+  try {
+    const employeePurchase = await PurchaseModel.create({employee: res.locals.user.id, client: req.body.user, products: req.body.products})
+    res.json(employeePurchase)
+  } catch (error) {
+    console.log(error)
+  }
+}
 async function findPurchaseList(req, res) {
   try {
     const purchase = await PurchaseModel.find();
@@ -51,6 +59,7 @@ async function findByIdAndDelete(req, res) {
 }
 module.exports = {
   createPurchase,
+  employeePurchase,
   findPurchaseList,
   findPurchaseNumber,
   findPurchaseAndUpdate,

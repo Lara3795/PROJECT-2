@@ -18,10 +18,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  pastMovies: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'movies'
-  }],
+  // pastMovies: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'movies'
+  // }],
   screenings: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'screening'
@@ -29,7 +29,12 @@ const userSchema = new mongoose.Schema({
   purchases: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'purchases'
-  }]
+  }],
+  rol: {
+    type: String,
+    enum: ["user"],
+    default: "user"
+  }
 });
 
 const UserModel = mongoose.model("user", userSchema);

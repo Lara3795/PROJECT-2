@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
+const movieSchema = require("./movieModel")
+const roomSchema = require("./roomModel")
 
 const screeningSchema = new mongoose.Schema({
-    movie: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "movie"
-    },
-    room: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "room"
-    },
+    movie: [movieSchema],
+    room: [roomSchema],
     start: {
         type: Date,
         require: true

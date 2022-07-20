@@ -21,7 +21,7 @@ async function createEmployee(req, res) {
 async function employeeLogin(req, res) {
 try {
     const employee = await EmployeeModel.findOne({email: req.body.email})
-    if(!employee) return res.status(500).send('Email or password incorrect')
+    if(employee === undefined) return res.status(500).send('Email or password incorrect')
 
     bcrypt.compare(req.body.password, employee.password, (err, result) => {
         if(err) return res.status(500).send(`Error: ${err}`)

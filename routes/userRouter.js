@@ -19,15 +19,15 @@ const {
 } = require("../controllers/userController");
 
 router
-.post("/", checkAuth, checkRol, createUser)
+.post("/", createUser)
 .post("/login", userLogin)
-.put('/profile', updateProfile)
-.put('/:id', updateUser)
+.put('/profile', checkAuth, updateProfile)
+.put('/:id',checkAuthEmployee, checkRol, updateUser)
 .put('/screening/:screeningId',checkAuth, buyScreening)
-.get("/", checkAuth, checkRol, showUsers)
+.get("/", checkAuthEmployee, checkRol, showUsers)
 .get('/profile', checkAuth, showProfile)
 .get('/pastMovies', checkAuth, pastMovies)
-.get('/purchaseMovies', purchaseMovies)
-.delete('/:id', deleteUser)
+.get('/purchaseMovies',checkAuth, purchaseMovies)
+.delete('/:id', checkAuthEmployee, checkRol, deleteUser)
 
 module.exports = router;

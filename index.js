@@ -22,7 +22,7 @@ const app = express();
     .use(express.json())
     .use("/api", require("./routes"))
 
-    .listen(process.env.SERVER_PORT, () => {
-      console.log(`Connected to port ${process.env.SERVER_PORT} `);
+    .listen(process.env.PORT, () => {
+      console.log(`Connected to port ${process.env.PORT} `);
     });
 })();

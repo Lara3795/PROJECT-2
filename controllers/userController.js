@@ -61,18 +61,24 @@ async function showProfile(req, res) {
 }
 async function pastMovies(req, res) {
   try {
-      const user = await UserModel.findById(res.locals.user.id)
-      res.json(user.pastMovies)
-
+    const today = new Date(Date.now())
+    const user = await UserModel.findById(res.locals.user.id).populate('screenings')
+    const result = user.screenings.filter(screening => {
+      return screening.start < today
+    })
+    res.json(result)
   } catch (error) {
       console.log(error)
   }
 }
 async function purchaseMovies(req, res) {
   try {
-      const purchaseMovies = await UserModel.find(res.body, {password: 0, __v: 0, name: 0, age: 0, email: 0, screenings: 0, pastMovies: 0})
-      res.json(purchaseMovies)
-
+    const today = new Date(Date.now())
+    const user = await UserModel.findById(res.locals.user.id).populate('screenings')
+    const result = user.screenings.filter(screening => {
+      return screening.start > today
+    })
+    res.json(result)
   } catch (error) {
       console.log(error)
   }
@@ -90,12 +96,16 @@ async function buyScreening(req, res) {
   try {
   const screening = await ScreeningModel.findById(req.params.screeningId)
   if(!screening) return res.send("Screening not found")
-  const user = await UserModel.findById(res.locals.user.id)  
-  user.screenings.push(screening.id)
-  screening.ocupation.push(user.id)
-  await user.save()
-  await screening.save()
-  res.json({screening: screening, message: "Screening purchased"})
+  if(screening.room[0].capacity > screening.ocupation.length) {
+    const user = await UserModel.findById(res.locals.user.id)  
+    user.screenings.push(screening.id)
+    screening.ocupation.push(user.id)
+    await user.save()
+    await screening.save()
+    res.json({screening: screening, message: "Screening purchased"})
+  }else{
+    res.send("FULL ROOM")
+  }
 }catch (error){
 console.log(error)
 }

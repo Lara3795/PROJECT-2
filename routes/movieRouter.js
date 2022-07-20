@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { checkRol, checkAuth } = require('../utils')
+const { checkRol, checkAuth, checkAuthEmployee } = require('../utils')
 
 const {
     createMovie,
@@ -11,7 +11,7 @@ const {
 } = require("../controllers/movieController")
 
 router
-    .post("/", checkRol, createMovie)
+    .post("/",checkAuthEmployee, checkRol, createMovie)
     .get("/", findMovie)
     .get("/:id", findMovieId)
     .put("/:id", checkRol, modifyMovie)

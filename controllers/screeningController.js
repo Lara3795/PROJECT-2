@@ -1,11 +1,21 @@
-const ScreeningModel = require("../models/screeningModel");
+const ScreeningModel = require("../models/screeningModel")
 
 async function findScreening(req, res) {
-    try {
+  try {
+  const today = new Date(Date.now())
+      const screening = await ScreeningModel.find({start: { $gt: today }}, {employee: 0, __v: 0})
+      res.json(screening)
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function getAllScreenings(req, res) {
+  try {
       const screening = await ScreeningModel.find()
       res.json(screening)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -47,6 +57,7 @@ async function findScreening(req, res) {
 
 module.exports = {
   findScreening,
+  getAllScreenings,
   findScreeningId,
   modifyScreening,
   createScreening,

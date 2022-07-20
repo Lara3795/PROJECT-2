@@ -17,13 +17,13 @@ const {
 
 router
 
-    .post('/', checkRol, createEmployee)
+    .post('/', createEmployee)
     .post('/login', employeeLogin)
     .post('/profile', checkAuthEmployee, updateProfile)
-    .get('/', showEmployees)
+    .get('/',checkAuthEmployee, checkRol, showEmployees)
     .get('/profile', checkAuthEmployee, showProfile)
-    .delete('/:id', checkRol, deleteEmployee)
-    .put('/:id', checkRol, updateEmployee)
+    .delete('/:id',checkAuthEmployee, checkRol, deleteEmployee)
+    .put('/:id',checkAuthEmployee, checkRol, updateEmployee)
 
 
  module.exports = router;
