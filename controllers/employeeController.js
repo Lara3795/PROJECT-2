@@ -53,7 +53,7 @@ async function showEmployees(req, res) {
 async function deleteEmployee(req, res) {
     try {
         const employee = await EmployeeModel.findByIdAndDelete(req.params.id)
-        res.json(deleteEmployee)
+        res.json(employee)
 
     } catch (error) {
         console.log(error)
